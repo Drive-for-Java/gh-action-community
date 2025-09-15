@@ -1,0 +1,25 @@
+on:
+  fork:
+  push:
+    branches: [ main ]
+  issues:
+    types: [ opened ]
+  issue_comment:
+    types: [ created ]
+  pull_request_target:
+    types: [ opened ]
+  pull_request_review_comment:
+    types: [ created ]
+
+jobs:
+
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: Drive-for-Java/gh-action-community/src/welcome@main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: '<h1>Welcome to the DEVs Dungeon Community :rocket:</h1>'
+          pr-message: '<h1>Welcome to the DEVs Dungeon Community :nerd_face:</h1>'
+          footer: 'If you would like to collaborate on Open-Source Projects'
